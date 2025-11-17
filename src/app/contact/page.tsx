@@ -42,18 +42,18 @@ export default function ContactPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen pt-20 flex items-center justify-center bg-neutral-50 dark:bg-neutral-950">
+      <div className="min-h-screen pt-20 flex items-center justify-center bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
         <m.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 1, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
           className="max-w-md mx-auto text-center px-4"
         >
-          <div className="w-20 h-20 rounded-full bg-primary-100 dark:bg-primary-950 flex items-center justify-center mx-auto mb-6">
-            <Send className="w-10 h-10 text-primary-500" />
+          <div className="w-20 h-20 rounded-full bg-primary-500/20 flex items-center justify-center mx-auto mb-6">
+            <Send className="w-10 h-10 text-primary-400" />
           </div>
-          <h2 className="text-3xl font-bold mb-4">Thank you!</h2>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400 mb-8">
+          <h2 className="text-3xl font-bold mb-4 text-white">Thank you!</h2>
+          <p className="text-lg text-white/80 mb-8">
             We&apos;ve received your request. Our team will get back to you within 24 hours.
           </p>
           <Button onClick={() => setSubmitted(false)} variant="outline">
@@ -65,12 +65,12 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen pt-20 bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
       {/* Hero Section */}
       <section className="py-20 sm:py-32 bg-gradient-to-br from-primary-500 to-accent-500 text-white">
         <div className="container mx-auto px-4 sm:px-6">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center"
@@ -91,18 +91,18 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="lg:col-span-1 space-y-6">
               <m.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <h2 className="text-3xl font-bold mb-6">Get in touch</h2>
-                <p className="text-neutral-600 dark:text-neutral-400 mb-8">
+                <h2 className="text-3xl font-bold mb-6 text-white">Get in touch</h2>
+                <p className="text-white/80 mb-8">
                   We&apos;re here to help. Reach out through any channel that works best for you.
                 </p>
               </m.div>
 
               <m.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1, duration: 0.6 }}
               >
@@ -122,7 +122,7 @@ export default function ContactPage() {
               </m.div>
 
               <m.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
@@ -142,7 +142,7 @@ export default function ContactPage() {
               </m.div>
 
               <m.div
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 1, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
@@ -168,7 +168,7 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <m.div
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 1, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               className="lg:col-span-2"

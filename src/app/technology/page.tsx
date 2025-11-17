@@ -2,9 +2,13 @@
 
 import { m } from 'framer-motion'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
+import { HoverEffect } from '@/components/ui/card-hover-effect'
 import { Button } from '@/components/ui/Button'
+import { Boxes } from '@/components/ui/background-boxes'
+import { Spotlight } from '@/components/ui/spotlight'
 import Link from 'next/link'
 import { Cpu, Zap, Network, Code, ArrowRight, Shield, Gauge, Cloud } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 const techStack = [
   {
@@ -101,23 +105,24 @@ const additionalFeatures = [
 
 export default function TechnologyPage() {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 bg-black">
       {/* Hero Section */}
-      <section className="py-20 sm:py-32 bg-gradient-to-br from-neutral-950 via-primary-950 to-accent-950 text-white">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="relative py-20 sm:py-32 overflow-hidden bg-black">
+        <div className="absolute inset-0 w-full h-full bg-black z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
+        <Boxes />
+        <div className="container mx-auto px-4 sm:px-6 relative z-20">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+            className="max-w-4xl mx-auto text-center">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight text-white">
               Technology that
-              <span className="block bg-gradient-to-r from-primary-300 to-accent-300 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
                 powers autonomy
               </span>
             </h1>
-            <p className="text-xl text-neutral-300 mb-8">
+            <p className="text-xl text-white/80 mb-8">
               Our technology stack combines cutting-edge robotics, distributed AI, and intelligent
               orchestration to deliver the future of logistics today.
             </p>
@@ -134,11 +139,22 @@ export default function TechnologyPage() {
       </section>
 
       {/* Technology Stack Details */}
-      <section className="py-20 sm:py-32 bg-white dark:bg-neutral-950">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="relative py-20 sm:py-32 bg-white dark:bg-black">
+        <div
+          className={cn(
+            "absolute inset-0",
+            "[background-size:40px_40px]",
+            "[background-image:linear-gradient(to_right,#e4e4e7_1px,transparent_1px),linear-gradient(to_bottom,#e4e4e7_1px,transparent_1px)]",
+            "dark:[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
+          )}
+        />
+        {/* Radial gradient for the container to give a faded look */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)] dark:bg-black"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
@@ -158,8 +174,8 @@ export default function TechnologyPage() {
               return (
                 <m.div
                   key={tech.title}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ y: 40 }}
+                  whileInView={{ y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                   className={`grid lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}
@@ -223,57 +239,50 @@ export default function TechnologyPage() {
       </section>
 
       {/* Additional Features */}
-      <section className="py-20 bg-neutral-50 dark:bg-neutral-900">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="relative py-20 bg-black overflow-hidden">
+        <Spotlight />
+        <div className="container mx-auto px-4 sm:px-6 relative z-50">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto mb-16"
           >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">Enterprise-Grade Features</h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-400">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">Enterprise-Grade Features</h2>
+            <p className="text-lg text-neutral-400">
               Built for mission-critical operations with security, performance, and reliability at
               the core.
             </p>
           </m.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {additionalFeatures.map((feature, index) => {
-              const Icon = feature.icon
-              return (
-                <m.div
-                  key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.6 }}
-                >
-                  <Card hover className="h-full text-center">
-                    <CardHeader>
-                      <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent-100 dark:bg-accent-950 mx-auto mb-4">
-                        <Icon className="w-7 h-7 text-accent-500" />
-                      </div>
-                      <CardTitle className="text-xl">{feature.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <CardDescription className="text-base">{feature.description}</CardDescription>
-                    </CardContent>
-                  </Card>
-                </m.div>
-              )
-            })}
-          </div>
+          <HoverEffect
+            items={additionalFeatures.map((feature) => ({
+              title: feature.title,
+              description: feature.description,
+              link: '#',
+            }))}
+            className="grid-cols-1 md:grid-cols-3"
+          />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 sm:py-32 bg-primary-500">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="relative py-20 sm:py-32 bg-black">
+        <div
+          className={cn(
+            "absolute inset-0",
+            "[background-size:40px_40px]",
+            "[background-image:linear-gradient(to_right,#262626_1px,transparent_1px),linear-gradient(to_bottom,#262626_1px,transparent_1px)]",
+          )}
+        />
+        {/* Radial gradient for the container to give a faded look */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="max-w-3xl mx-auto text-center text-white"

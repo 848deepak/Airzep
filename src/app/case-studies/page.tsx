@@ -1,7 +1,7 @@
 'use client'
 
 import { m } from 'framer-motion'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/Card'
+import { HoverEffect } from '@/components/ui/card-hover-effect'
 import { Button } from '@/components/ui/Button'
 import Link from 'next/link'
 import { ArrowRight, TrendingUp } from 'lucide-react'
@@ -69,21 +69,20 @@ const industries = [
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
       {/* Hero Section */}
-      <section className="py-20 sm:py-32 bg-gradient-to-br from-neutral-950 to-primary-950 text-white">
+      <section className="py-20 sm:py-32">
         <div className="container mx-auto px-4 sm:px-6">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h1 className="text-5xl sm:text-6xl font-extrabold mb-6">
+            className="max-w-3xl mx-auto text-center">
+            <h1 className="text-5xl sm:text-6xl font-extrabold mb-6 text-white">
               Customer Success
-              <span className="block text-primary-300">Stories</span>
+              <span className="block text-primary-400">Stories</span>
             </h1>
-            <p className="text-xl text-neutral-300">
+            <p className="text-xl text-white/80">
               See how leading organizations transform their logistics operations with measurable,
               real-world results.
             </p>
@@ -92,7 +91,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800">
+      <section className="py-16 border-b border-white/10">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
@@ -103,16 +102,16 @@ export default function CaseStudiesPage() {
             ].map((stat, i) => (
               <m.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.6 }}
                 className="text-center"
               >
-                <div className="text-3xl sm:text-4xl font-bold text-primary-500 mb-2">
+                <div className="text-3xl sm:text-4xl font-bold text-primary-400 mb-2">
                   {stat.value}
                 </div>
-                <div className="text-sm text-neutral-600 dark:text-neutral-400">{stat.label}</div>
+                <div className="text-sm text-white/60">{stat.label}</div>
               </m.div>
             ))}
           </div>
@@ -120,7 +119,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter (placeholder for future implementation) */}
-      <section className="py-12 bg-neutral-50 dark:bg-neutral-900">
+      <section className="py-12 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap gap-3 justify-center">
             {industries.map(industry => (
@@ -129,7 +128,7 @@ export default function CaseStudiesPage() {
                 className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
                   industry.value === 'all'
                     ? 'bg-primary-500 text-white'
-                    : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                    : 'bg-neutral-800/50 text-white/80 hover:bg-neutral-700/50'
                 }`}
               >
                 {industry.label}
@@ -140,62 +139,15 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Studies Grid */}
-      <section className="py-20 bg-white dark:bg-neutral-950">
+      <section className="py-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <m.div
-                key={study.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-              >
-                <Link href={`/case-studies/${study.slug}`} className="group block h-full">
-                  <Card hover className="h-full flex flex-col">
-                    {/* Image placeholder */}
-                    <div className="relative h-48 bg-gradient-to-br from-primary-500 to-accent-500 rounded-t-2xl overflow-hidden">
-                      <div className="absolute inset-0 flex items-center justify-center text-white text-6xl font-bold opacity-20">
-                        {study.client.charAt(0)}
-                      </div>
-                    </div>
-
-                    <CardHeader>
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-primary-100 text-primary-700 dark:bg-primary-950 dark:text-primary-300">
-                          {study.industry}
-                        </span>
-                      </div>
-                      <CardTitle className="text-xl group-hover:text-primary-500 transition-colors">
-                        {study.title}
-                      </CardTitle>
-                    </CardHeader>
-
-                    <CardContent className="flex-1 flex flex-col">
-                      <CardDescription className="mb-6">{study.excerpt}</CardDescription>
-
-                      {/* Metrics */}
-                      <div className="grid grid-cols-3 gap-4 mt-auto pt-6 border-t border-neutral-200 dark:border-neutral-800">
-                        {study.metrics.map(metric => (
-                          <div key={metric.label} className="text-center">
-                            <div className="text-lg font-bold text-primary-500">{metric.value}</div>
-                            <div className="text-xs text-neutral-600 dark:text-neutral-400">
-                              {metric.label}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="flex items-center gap-2 mt-6 text-primary-500 font-medium group-hover:gap-3 transition-all">
-                        Read Case Study
-                        <ArrowRight className="w-4 h-4" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </m.div>
-            ))}
-          </div>
+          <HoverEffect
+            items={caseStudies.map((study) => ({
+              title: study.title,
+              description: study.excerpt,
+              link: `/case-studies/${study.slug}`,
+            }))}
+          />
         </div>
       </section>
 
@@ -203,7 +155,7 @@ export default function CaseStudiesPage() {
       <section className="py-20 sm:py-32 bg-gradient-to-br from-primary-500 to-accent-500">
         <div className="container mx-auto px-4 sm:px-6">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}

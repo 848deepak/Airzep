@@ -6,6 +6,8 @@ import { m } from 'framer-motion'
 import { Button } from './ui/Button'
 import Link from 'next/link'
 import { ArrowRight, Play } from 'lucide-react'
+import { BackgroundRippleEffect } from './ui/background-ripple-effect'
+import { Cover } from './ui/cover'
 
 const HeroScene = dynamic(() => import('./HeroScene').then(mod => mod.HeroScene), {
   ssr: false,
@@ -37,59 +39,36 @@ export function Hero3D() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-neutral-50 via-white to-primary-50 dark:from-neutral-950 dark:via-neutral-900 dark:to-primary-950">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+      {/* Background Ripple Effect - full coverage */}
+      <div className="absolute inset-0 w-full h-full">
+        <BackgroundRippleEffect rows={10} cols={20} cellSize={56} />
+      </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <m.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="space-y-8"
-          >
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block"
-            >
-              <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 dark:bg-primary-950 text-primary-700 dark:text-primary-300 text-sm font-medium">
+          <div className="space-y-8">
+            <div className="inline-block">
+              <span className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium">
                 <span className="animate-pulse mr-2 h-2 w-2 rounded-full bg-primary-500" />
                 Next-Generation Logistics Technology
               </span>
-            </m.div>
+            </div>
 
-            <m.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight"
-            >
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
               Logistics technology
-              <span className="block mt-2 bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent">
-                reimagined
+              <span className="block mt-2">
+                <Cover>reimagined</Cover>
               </span>
-            </m.h1>
+            </h1>
 
-            <m.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 max-w-xl"
-            >
+            <p className="text-lg sm:text-xl text-white/90 max-w-xl">
               Distributed robotics. Fleet OS. Edge AI. Building the infrastructure for autonomous
               logistics at scale.
-            </m.p>
+            </p>
 
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4"
-            >
+            <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="xl" variant="default">
                 <Link href="/contact" className="group">
                   Request Demo
@@ -102,29 +81,24 @@ export function Hero3D() {
                   Explore Technology
                 </Link>
               </Button>
-            </m.div>
+            </div>
 
             {/* Stats */}
-            <m.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
-              className="grid grid-cols-3 gap-8 pt-8 border-t border-neutral-200 dark:border-neutral-800"
-            >
+            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
               {[
                 { value: '99.9%', label: 'Uptime' },
                 { value: '10M+', label: 'Deliveries' },
                 { value: '<15min', label: 'Avg. Time' },
               ].map((stat, i) => (
                 <div key={i}>
-                  <div className="text-2xl sm:text-3xl font-bold text-primary-500">
+                  <div className="text-2xl sm:text-3xl font-bold text-primary-400">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-neutral-600 dark:text-neutral-400">{stat.label}</div>
+                  <div className="text-sm text-white/70">{stat.label}</div>
                 </div>
               ))}
-            </m.div>
-          </m.div>
+            </div>
+          </div>
 
           {/* 3D Scene or Fallback */}
           <m.div

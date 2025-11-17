@@ -44,7 +44,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
-              <span className="text-3xl font-extrabold bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent">
+              <span className="text-3xl font-bold text-white tracking-[0.15em] uppercase">
                 AIRZEP
               </span>
             </Link>
