@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
+import { StructuredData } from '@/components/StructuredData'
+import { Analytics } from '@/components/Analytics'
 
 const inter = Inter({
   variable: '--font-geist-sans',
@@ -17,7 +19,7 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://airzep.com'),
+  metadataBase: new URL('https://airzep.vercel.app'),
   title: {
     default: 'AIRZEP — Logistics Technology Reimagined',
     template: '%s | AIRZEP',
@@ -31,14 +33,25 @@ export const metadata: Metadata = {
     'fleet management',
     'autonomous systems',
     'distributed systems',
+    'autonomous delivery',
+    'supply chain optimization',
+    'last mile delivery',
+    'fleet operating system',
+    'real-time logistics',
+    'predictive analytics',
   ],
   authors: [{ name: 'AIRZEP' }],
   creator: 'AIRZEP',
   publisher: 'AIRZEP',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://airzep.com',
+    url: 'https://airzep.vercel.app',
     siteName: 'AIRZEP',
     title: 'AIRZEP — Logistics Technology Reimagined',
     description:
@@ -73,7 +86,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
     apple: '/apple-touch-icon.png',
+  },
+  manifest: '/manifest.json',
+  alternates: {
+    canonical: 'https://airzep.vercel.app',
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    // yandex: 'your-yandex-verification-code',
+    // bing: 'your-bing-verification-code',
   },
 }
 
@@ -84,7 +107,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="canonical" href="https://airzep.vercel.app" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
+        <StructuredData />
+        <Analytics />
         <Nav />
         <main className="min-h-screen">{children}</main>
         <Footer />

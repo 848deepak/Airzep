@@ -12,7 +12,7 @@ export default function NotFound() {
       <section className="relative w-full py-20 sm:py-32 overflow-hidden bg-black">
         <div className="absolute inset-0 w-full h-full bg-black z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
         <Boxes />
-        
+
         <div className="container mx-auto px-4 sm:px-6 relative z-20">
           <m.div
             initial={{ y: 20 }}
@@ -46,8 +46,8 @@ export default function NotFound() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="text-xl text-white/70 mb-10 max-w-2xl mx-auto"
             >
-              Oops! The page you're looking for seems to have taken an autonomous detour. 
-              Let's get you back on track.
+              Oops! The page you&apos;re looking for seems to have taken an autonomous detour.
+              Let&apos;s get you back on track.
             </m.p>
 
             <m.div
@@ -70,9 +70,7 @@ export default function NotFound() {
               </Button>
             </m.div>
 
-            <m.div
-              className="mt-12 pt-12 border-t border-white/10"
-            >
+            <m.div className="mt-12 pt-12 border-t border-white/10">
               <p className="text-sm text-white/50 mb-4">Looking for something specific?</p>
               <div className="flex flex-wrap gap-3 justify-center">
                 <Link

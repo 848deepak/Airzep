@@ -2,58 +2,59 @@
 
 import { m } from 'framer-motion'
 import { HoverEffect } from '@/components/ui/card-hover-effect'
-import { Button } from '@/components/ui/Button'
+import { LitButton } from '@/components/ui/LitButton'
 import Link from 'next/link'
-import { ArrowRight, TrendingUp } from 'lucide-react'
-import Image from 'next/image'
+import { TrendingUp } from 'lucide-react'
+import { DotBackground } from '@/components/ui/dot-background'
+import { Illustration } from '@/components/ui/glowing-stars'
 
-// Mock data - replace with CMS data using getCaseStudies()
+// Mock data - R&D phase concept studies
 const caseStudies = [
   {
     id: '1',
-    slug: 'techcorp-last-mile-delivery',
-    title: 'TechCorp Reduces Last-Mile Delivery Time by 40%',
-    client: 'TechCorp',
+    slug: 'urban-delivery-prototype',
+    title: 'Urban Delivery Network - Prototype Testing Phase',
+    client: 'Internal R&D',
     industry: 'logistics',
     excerpt:
-      'How TechCorp leveraged AIRZEP&apos;s autonomous fleet to cut delivery times in half while reducing operational costs.',
+      'Early-stage autonomous delivery testing in controlled urban environments. Validating multi-sensor navigation and dynamic route optimization algorithms.',
     image: '/assets/case-study-1.jpg',
     metrics: [
-      { label: 'Faster Delivery', value: '40%' },
-      { label: 'Cost Reduction', value: '35%' },
-      { label: 'Fleet Efficiency', value: '99.5%' },
+      { label: 'Test Flights', value: '500+' },
+      { label: 'Navigation Accuracy', value: '98.5%' },
+      { label: 'Prototype Phase', value: 'Active' },
     ],
     publishedAt: '2024-11-01',
   },
   {
     id: '2',
-    slug: 'medlogistics-critical-supplies',
-    title: 'MedLogistics Achieves 99.9% On-Time Critical Supply Delivery',
-    client: 'MedLogistics',
-    industry: 'healthcare',
+    slug: 'autonomous-payload-handling',
+    title: 'SPECTRA Pod Integration - Development Phase',
+    client: 'R&D Lab',
+    industry: 'development',
     excerpt:
-      'Healthcare supply chain transformation with temperature-controlled autonomous delivery ensuring patient safety.',
+      'Developing automated ground station technology for precision landing, charging, and payload management. Current focus: precision alignment systems.',
     image: '/assets/case-study-2.jpg',
     metrics: [
-      { label: 'On-Time Delivery', value: '99.9%' },
-      { label: 'Temperature Accuracy', value: '100%' },
-      { label: 'Response Time', value: '<15min' },
+      { label: 'Landing Precision', value: '±2cm' },
+      { label: 'Charge Cycles', value: '200+' },
+      { label: 'Status', value: 'Prototype' },
     ],
     publishedAt: '2024-10-15',
   },
   {
     id: '3',
-    slug: 'rapid-response-disaster-relief',
-    title: 'RapidResponse Delivers Aid in 8 Minutes During Natural Disaster',
-    client: 'RapidResponse',
-    industry: 'emergency',
+    slug: 'fleet-orchestration-testing',
+    title: 'NEXUS Fleet OS - Alpha Testing',
+    client: 'Internal Systems',
+    industry: 'platform',
     excerpt:
-      'Emergency response coordination using AIRZEP&apos;s autonomous fleet for rapid disaster relief supply delivery.',
+      'Building centralized fleet orchestration platform. Testing multi-agent coordination, real-time routing, and edge-to-cloud data synchronization.',
     image: '/assets/case-study-3.jpg',
     metrics: [
-      { label: 'Avg Response', value: '8min' },
-      { label: 'Successful Missions', value: '2,500+' },
-      { label: 'Lives Impacted', value: '50,000+' },
+      { label: 'Simulated Missions', value: '2,000+' },
+      { label: 'Platform Uptime', value: '99.2%' },
+      { label: 'Phase', value: 'Alpha' },
     ],
     publishedAt: '2024-09-20',
   },
@@ -61,44 +62,45 @@ const caseStudies = [
 
 const industries = [
   { label: 'All', value: 'all' },
-  { label: 'Logistics', value: 'logistics' },
-  { label: 'Healthcare', value: 'healthcare' },
-  { label: 'Emergency Response', value: 'emergency' },
-  { label: 'Enterprise', value: 'enterprise' },
+  { label: 'R&D Projects', value: 'logistics' },
+  { label: 'Prototypes', value: 'development' },
+  { label: 'Platform Testing', value: 'platform' },
+  { label: 'Lab Validation', value: 'enterprise' },
 ]
 
 export default function CaseStudiesPage() {
   return (
-    <div className="min-h-screen pt-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
+    <DotBackground className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="py-20 sm:py-32">
+      <section className="py-20 sm:py-32 relative z-10">
         <div className="container mx-auto px-4 sm:px-6">
           <m.div
             initial={{ opacity: 1, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 30 }}
             transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center">
+            className="max-w-3xl mx-auto text-center"
+          >
             <h1 className="text-5xl sm:text-6xl font-extrabold mb-6 text-white">
-              Customer Success
-              <span className="block text-primary-400">Stories</span>
+              R&D Projects
+              <span className="block text-primary-400">& Prototypes</span>
             </h1>
             <p className="text-xl text-white/80">
-              See how leading organizations transform their logistics operations with measurable,
-              real-world results.
+              Explore our active research, development, and prototype validation work as we build
+              the future of autonomous logistics.
             </p>
           </m.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 border-b border-white/10">
+      <section className="py-16 border-b border-white/10 relative z-10">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: '10M+', label: 'Deliveries Completed' },
-              { value: '99.9%', label: 'Average Uptime' },
-              { value: '40%', label: 'Avg Cost Reduction' },
-              { value: '150+', label: 'Enterprise Clients' },
+              { value: '3', label: 'Active Prototypes' },
+              { value: '2,500+', label: 'Test Missions' },
+              { value: '98%', label: 'System Reliability' },
+              { value: 'Alpha', label: 'Development Stage' },
             ].map((stat, i) => (
               <m.div
                 key={i}
@@ -119,7 +121,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Filter (placeholder for future implementation) */}
-      <section className="py-12 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
+      <section className="py-12 relative z-10">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="flex flex-wrap gap-3 justify-center">
             {industries.map(industry => (
@@ -139,10 +141,10 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* Case Studies Grid */}
-      <section className="py-20 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-4 sm:px-6">
           <HoverEffect
-            items={caseStudies.map((study) => ({
+            items={caseStudies.map(study => ({
               title: study.title,
               description: study.excerpt,
               link: `/case-studies/${study.slug}`,
@@ -152,8 +154,13 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 sm:py-32 bg-gradient-to-br from-primary-500 to-accent-500">
-        <div className="container mx-auto px-4 sm:px-6">
+      <section className="py-20 sm:py-32 relative z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-black">
+          <div className="absolute inset-0 flex items-center justify-center opacity-90">
+            <Illustration mouseEnter={false} />
+          </div>
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <m.div
             initial={{ opacity: 1, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -162,28 +169,22 @@ export default function CaseStudiesPage() {
             className="max-w-3xl mx-auto text-center text-white"
           >
             <TrendingUp className="w-16 h-16 mx-auto mb-6" />
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-              Ready to write your success story?
-            </h2>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6">Interested in our R&D progress?</h2>
             <p className="text-xl mb-8 text-white/90">
-              Join hundreds of organizations transforming their logistics with AIRZEP.
+              We&apos;re actively developing prototype systems with planned deployment roadmap. Get
+              updates on our development milestones.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="xl" variant="secondary">
-                <Link href="/contact">Get Started</Link>
-              </Button>
-              <Button
-                asChild
-                size="xl"
-                variant="outline"
-                className="border-white text-white hover:bg-white/10"
-              >
-                <Link href="/technology">Explore Technology</Link>
-              </Button>
+              <Link href="/contact">
+                <LitButton>Request Information</LitButton>
+              </Link>
+              <Link href="/technology">
+                <LitButton>Explore Technology</LitButton>
+              </Link>
             </div>
           </m.div>
         </div>
       </section>
-    </div>
+    </DotBackground>
   )
 }

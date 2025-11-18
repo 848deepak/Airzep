@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { m } from 'framer-motion'
-import { Button } from './ui/Button'
+import { MagicButton } from './ui/MagicButton'
 import Link from 'next/link'
 import { ArrowRight, Play } from 'lucide-react'
 import { BackgroundRippleEffect } from './ui/background-ripple-effect'
@@ -57,38 +57,38 @@ export function Hero3D() {
             </div>
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
-              Logistics technology
+              Autonomous logistics
               <span className="block mt-2">
-                <Cover>reimagined</Cover>
+                <Cover>infrastructure</Cover>
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-white/90 max-w-xl">
-              Distributed robotics. Fleet OS. Edge AI. Building the infrastructure for autonomous
-              logistics at scale.
+              Distributed robotics. Edge AI. Autonomous infrastructure. Engineering the
+              technological backbone that moves the world, autonomously.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="xl" variant="default">
-                <Link href="/contact" className="group">
+              <Link href="/contact">
+                <MagicButton className="h-14">
                   Request Demo
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
-              <Button asChild size="xl" variant="outline">
-                <Link href="/technology" className="group">
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </MagicButton>
+              </Link>
+              <Link href="/technology">
+                <MagicButton className="h-14">
                   <Play className="mr-2 h-5 w-5" />
                   Explore Technology
-                </Link>
-              </Button>
+                </MagicButton>
+              </Link>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/20">
               {[
-                { value: '99.9%', label: 'Uptime' },
-                { value: '10M+', label: 'Deliveries' },
-                { value: '<15min', label: 'Avg. Time' },
+                { value: '99.99%', label: 'Uptime' },
+                { value: '10M+', label: 'Autonomous Deliveries' },
+                { value: '<15min', label: 'Avg. Delivery Time' },
               ].map((stat, i) => (
                 <div key={i}>
                   <div className="text-2xl sm:text-3xl font-bold text-primary-400">

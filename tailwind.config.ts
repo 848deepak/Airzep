@@ -64,9 +64,18 @@ const config: Config = {
             opacity: '0.4',
           },
         },
+        shimmer: {
+          from: {
+            backgroundPosition: '0 0',
+          },
+          to: {
+            backgroundPosition: '-200% 0',
+          },
+        },
       },
       animation: {
         'cell-ripple': 'cell-ripple var(--duration, 200ms) ease-out var(--delay, 0ms) none 1',
+        shimmer: 'shimmer 2s linear infinite',
       },
     },
   },

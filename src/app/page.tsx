@@ -1,7 +1,7 @@
 'use client'
 
 import { Hero3D } from '@/components/Hero3D'
-import { Button } from '@/components/ui/Button'
+import { LitButton } from '@/components/ui/LitButton'
 import { BackgroundBeams } from '@/components/ui/background-beams'
 import { BackgroundBeamsWithCollision } from '@/components/ui/background-beams-with-collision'
 import { MaskContainer } from '@/components/ui/svg-mask-effect'
@@ -13,52 +13,47 @@ const techPillars = [
   {
     icon: Cpu,
     title: 'Robotics',
-    description:
-      'Advanced autonomous systems with real-time obstacle avoidance and adaptive path planning.',
+    description: 'Autonomous flight, adaptive routing, multi-sensor fusion.',
   },
   {
     icon: Zap,
     title: 'Edge AI',
-    description:
-      'Distributed intelligence processing at the edge for sub-millisecond decision making.',
+    description: 'Real-time perception, semantic segmentation, sub-10ms inference.',
   },
   {
     icon: Network,
     title: 'Fleet OS',
-    description:
-      'Centralized orchestration platform managing thousands of autonomous units in real-time.',
+    description: 'Orchestration layer for 10,000+ autonomous units.',
   },
   {
     icon: Code,
     title: 'APIs',
-    description: 'Developer-first integration platform with comprehensive SDKs and webhooks.',
+    description: 'Developer-first, enterprise secure, global-scale integrations.',
   },
 ]
 
 const solutions = [
   {
     title: 'Logistics',
-    description:
-      'Last-mile delivery optimization with autonomous routing and predictive analytics.',
-    metric: '40% faster',
+    description: 'Autonomous last-mile networks with predictive delivery intelligence.',
+    metric: 'Enterprise-scale',
     href: '/solutions/logistics',
   },
   {
     title: 'Healthcare',
-    description:
-      'Critical supply delivery with temperature monitoring and chain-of-custody tracking.',
-    metric: '99.9% reliability',
+    description: 'Critical medical supply routing with precision temperature controls.',
+    metric: 'Compliance-grade',
     href: '/solutions/healthcare',
   },
   {
     title: 'Emergency Response',
-    description: 'Rapid deployment systems for disaster relief and emergency medical supplies.',
-    metric: '<10min response',
+    description: 'Rapid deployment, disaster relief, autonomous mission routing.',
+    metric: 'Rapid deployment',
     href: '/solutions/emergency',
   },
 ]
 
-const partners = ['TechCorp', 'LogiFlow', 'MedSupply', 'SmartCity', 'RapidResponse', 'GlobalTrade']
+// const partners = ['TechCorp', 'LogiFlow', 'MedSupply', 'SmartCity', 'RapidResponse', 'GlobalTrade']
 
 export default function HomePage() {
   return (
@@ -69,7 +64,7 @@ export default function HomePage() {
       <section className="relative py-20 sm:py-32 bg-neutral-950 overflow-hidden">
         {/* Background Beams */}
         <BackgroundBeams />
-        
+
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <m.div
             initial={{ opacity: 1, y: 20 }}
@@ -80,11 +75,11 @@ export default function HomePage() {
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">
               Technology-first
-              <span className="block text-primary-400">approach</span>
+              <span className="block text-primary-400">infrastructure</span>
             </h2>
             <p className="text-lg text-white/80">
-              Our platform combines cutting-edge robotics, distributed systems, and artificial
-              intelligence to create a seamless logistics infrastructure.
+              A vertically integrated stack engineered for enterprise logistics — from autonomous
+              systems to Fleet OS and Edge AI.
             </p>
           </m.div>
 
@@ -119,17 +114,15 @@ export default function HomePage() {
           <div className="container mx-auto px-4 sm:px-6 w-full h-full flex flex-col items-center justify-center">
             <div className="text-center max-w-3xl mx-auto mb-12">
               <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-neutral-900">
-                Solutions for{" "}
-                <span className="text-primary-500">every industry</span>
+                Solutions for <span className="text-primary-500">every operation</span>
               </h2>
               <p className="text-lg text-neutral-700">
-                Tailored logistics technology solutions designed for mission-critical applications
-                across diverse sectors.
+                Enterprise-grade autonomous logistics engineered for mission-critical operations.
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto w-full">
-              {solutions.map((solution) => (
+              {solutions.map(solution => (
                 <div key={solution.title} className="space-y-3 text-left">
                   <h3 className="text-2xl font-bold text-neutral-900">{solution.title}</h3>
                   <p className="text-base text-neutral-700">{solution.description}</p>
@@ -147,12 +140,9 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 w-full h-full flex flex-col items-center justify-center text-white">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">
-              Innovative{" "}
-              <span className="text-primary-400">drone technology</span>
+              Autonomous <span className="text-primary-400">at scale</span>
             </h2>
-            <p className="text-xl text-white/90">
-              Hover to explore our industry-specific solutions
-            </p>
+            <p className="text-xl text-white/90">Hover to explore our autonomous capabilities</p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-12 max-w-6xl mx-auto w-full">
@@ -160,12 +150,12 @@ export default function HomePage() {
               <h3 className="text-2xl font-bold text-white">Fast Delivery</h3>
               <p className="text-white/70">Next-generation autonomous flight systems</p>
             </div>
-            
+
             <div className="text-center space-y-4">
               <h3 className="text-2xl font-bold text-white">Precision</h3>
               <p className="text-white/70">AI-powered route optimization</p>
             </div>
-            
+
             <div className="text-center space-y-4">
               <h3 className="text-2xl font-bold text-white">Global Scale</h3>
               <p className="text-white/70">Worldwide logistics infrastructure</p>
@@ -173,8 +163,6 @@ export default function HomePage() {
           </div>
         </div>
       </MaskContainer>
-
-      
 
       {/* CTA Section */}
       <BackgroundBeamsWithCollision>
@@ -190,22 +178,19 @@ export default function HomePage() {
               Ready to transform your logistics?
             </h2>
             <p className="text-xl mb-8 text-white/80">
-              Schedule a demo to see how AIRZEP can revolutionize your delivery infrastructure.
+              Discover how AIRZEP can transform your logistics operations with autonomous
+              infrastructure.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="xl" variant="default">
-                <Link href="/contact" className="group">
+              <Link href="/contact">
+                <LitButton>
                   Request Demo
-                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                size="xl"
-                variant="outline"
-              >
-                <Link href="/case-studies">View Case Studies</Link>
-              </Button>
+                  <ArrowRight className="ml-2 h-5 w-5 inline" />
+                </LitButton>
+              </Link>
+              <Link href="/case-studies">
+                <LitButton>View Case Studies</LitButton>
+              </Link>
             </div>
           </m.div>
         </div>

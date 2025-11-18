@@ -4,27 +4,14 @@ import { Github, Twitter, Linkedin, Mail } from 'lucide-react'
 const footerLinks = {
   company: [
     { label: 'About', href: '/about' },
-    { label: 'Careers', href: '/careers' },
+    { label: 'Products', href: '/products' },
+    { label: 'Technology', href: '/technology' },
     { label: 'Contact', href: '/contact' },
-    { label: 'Media Kit', href: '/media-kit' },
   ],
-  solutions: [
-    { label: 'Logistics', href: '/solutions/logistics' },
-    { label: 'Healthcare', href: '/solutions/healthcare' },
-    { label: 'Emergency Response', href: '/solutions/emergency' },
-    { label: 'Enterprise', href: '/solutions/enterprise' },
-  ],
-  resources: [
-    { label: 'Case Studies', href: '/case-studies' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Documentation', href: '/docs' },
-    { label: 'API', href: '/api' },
-  ],
+  resources: [{ label: 'Case Studies', href: '/case-studies' }],
   legal: [
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms of Service', href: '/terms' },
-    { label: 'Cookie Policy', href: '/cookies' },
-    { label: 'Security', href: '/security' },
   ],
 }
 
@@ -40,7 +27,7 @@ export function Footer() {
     <footer className="bg-neutral-950 text-neutral-300 pt-16 pb-8">
       <div className="container mx-auto px-4 sm:px-6">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
@@ -76,20 +63,6 @@ export function Footer() {
             <h3 className="font-semibold text-white mb-4">Company</h3>
             <ul className="space-y-3">
               {footerLinks.company.map(link => (
-                <li key={link.href}>
-                  <Link href={link.href} className="text-sm hover:text-white transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Solutions Links */}
-          <div>
-            <h3 className="font-semibold text-white mb-4">Solutions</h3>
-            <ul className="space-y-3">
-              {footerLinks.solutions.map(link => (
                 <li key={link.href}>
                   <Link href={link.href} className="text-sm hover:text-white transition-colors">
                     {link.label}
