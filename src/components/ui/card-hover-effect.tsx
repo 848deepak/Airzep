@@ -1,28 +1,23 @@
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
+import { cn } from '@/lib/utils'
+import { AnimatePresence, motion } from 'motion/react'
 
-import { useState } from "react";
+import { useState } from 'react'
 
 export const HoverEffect = ({
   items,
   className,
 }: {
   items: {
-    title: string;
-    description: string;
-    link: string;
-  }[];
-  className?: string;
+    title: string
+    description: string
+    link: string
+  }[]
+  className?: string
 }) => {
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
-    <div
-      className={cn(
-        "grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10",
-        className
-      )}
-    >
+    <div className={cn('grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3  py-10', className)}>
       {items.map((item, idx) => (
         <a
           href={item?.link}
@@ -55,20 +50,20 @@ export const HoverEffect = ({
         </a>
       ))}
     </div>
-  );
-};
+  )
+}
 
 export const Card = ({
   className,
   children,
 }: {
-  className?: string;
-  children: React.ReactNode;
+  className?: string
+  children: React.ReactNode
 }) => {
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-white dark:bg-black border border-neutral-200 dark:border-white/[0.2] group-hover:border-slate-400 dark:group-hover:border-slate-700 relative z-20",
+        'rounded-2xl h-full w-full p-4 overflow-hidden bg-white dark:bg-black border border-neutral-200 dark:border-white/[0.2] group-hover:border-slate-400 dark:group-hover:border-slate-700 relative z-20',
         className
       )}
     >
@@ -76,36 +71,38 @@ export const Card = ({
         <div className="p-4">{children}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 export const CardTitle = ({
   className,
   children,
 }: {
-  className?: string;
-  children: React.ReactNode;
+  className?: string
+  children: React.ReactNode
 }) => {
   return (
-    <h4 className={cn("text-neutral-900 dark:text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4
+      className={cn('text-neutral-900 dark:text-zinc-100 font-bold tracking-wide mt-4', className)}
+    >
       {children}
     </h4>
-  );
-};
+  )
+}
 export const CardDescription = ({
   className,
   children,
 }: {
-  className?: string;
-  children: React.ReactNode;
+  className?: string
+  children: React.ReactNode
 }) => {
   return (
     <p
       className={cn(
-        "mt-8 text-neutral-600 dark:text-zinc-400 tracking-wide leading-relaxed text-sm",
+        'mt-8 text-neutral-600 dark:text-zinc-400 tracking-wide leading-relaxed text-sm',
         className
       )}
     >
       {children}
     </p>
-  );
-};
+  )
+}

@@ -6,7 +6,7 @@ export interface MagicButtonProps extends React.ButtonHTMLAttributes<HTMLButtonE
 }
 
 const MagicButton = React.forwardRef<HTMLButtonElement, MagicButtonProps>(
-  ({ className, children, asChild, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <button
         ref={ref}

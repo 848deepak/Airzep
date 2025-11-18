@@ -6,7 +6,7 @@ export interface LitButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEle
 }
 
 const LitButton = React.forwardRef<HTMLButtonElement, LitButtonProps>(
-  ({ className, children, asChild, ...props }, ref) => {
+  ({ className, children, ...props }, ref) => {
     return (
       <button ref={ref} className={cn('p-[3px] relative', className)} {...props}>
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg" />

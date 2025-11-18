@@ -5,10 +5,8 @@ import { Button } from '@/components/ui/Button'
 import { Boxes } from '@/components/ui/background-boxes'
 import { Spotlight } from '@/components/ui/spotlight'
 import { HoverEffect } from '@/components/ui/card-hover-effect'
-import { PointerHighlight } from '@/components/ui/pointer-highlight'
 import Link from 'next/link'
-import { Plane, Package, Zap, Radio, Server, Cpu, Shield, Activity } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { Activity } from 'lucide-react'
 
 const products = [
   {
