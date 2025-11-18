@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+'use client'
+import React from 'react'
+import { BackgroundBeams } from '@/components/ui/background-beams'
 
 export function BackgroundBeamsDemo() {
   return (
@@ -11,10 +11,9 @@ export function BackgroundBeamsDemo() {
         </h1>
         <p></p>
         <p className="text-neutral-500 max-w-lg mx-auto my-2 text-sm text-center relative z-10">
-          Welcome to MailJet, the best transactional email service on the web.
-          We provide reliable, scalable, and customizable email solutions for
-          your business. Whether you&apos;re sending order confirmations,
-          password reset emails, or promotional campaigns, MailJet has got you
+          Welcome to MailJet, the best transactional email service on the web. We provide reliable,
+          scalable, and customizable email solutions for your business. Whether you&apos;re sending
+          order confirmations, password reset emails, or promotional campaigns, MailJet has got you
           covered.
         </p>
         <input
@@ -25,5 +24,5 @@ export function BackgroundBeamsDemo() {
       </div>
       <BackgroundBeams />
     </div>
-  );
+  )
 }

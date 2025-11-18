@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import React, { useState } from "react";
-import Link from "next/link";
+import React, { useState } from 'react'
+import Link from 'next/link'
 import {
   Navbar,
   NavBody,
@@ -11,29 +11,24 @@ import {
   MobileNavMenu,
   MobileNavToggle,
   NavbarButton,
-} from "./ui/resizable-navbar";
+} from './ui/resizable-navbar'
 
 const navItems = [
-  { name: "Home", link: "/" },
-  { name: "Technology", link: "/technology" },
-  { name: "Products", link: "/products" },
-  { name: "Case Studies", link: "/case-studies" },
-];
+  { name: 'Home', link: '/' },
+  { name: 'Technology', link: '/technology' },
+  { name: 'Products', link: '/products' },
+  { name: 'Case Studies', link: '/case-studies' },
+]
 
 export function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <Navbar className="top-0">
       {/* Desktop Navigation */}
       <NavBody>
-        <Link
-          href="/"
-          className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1"
-        >
-          <span className="text-xl font-bold text-white tracking-[0.15em] uppercase">
-            AIRZEP
-          </span>
+        <Link href="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1">
+          <span className="text-xl font-bold text-white tracking-[0.15em] uppercase">AIRZEP</span>
         </Link>
         <NavItems items={navItems} />
         <div className="relative z-20 flex items-center space-x-2">
@@ -46,18 +41,10 @@ export function Nav() {
       {/* Mobile Navigation */}
       <MobileNav>
         <MobileNavHeader>
-          <Link
-            href="/"
-            className="relative z-20 flex items-center space-x-2 px-2 py-1"
-          >
-            <span className="text-xl font-bold text-white tracking-[0.15em] uppercase">
-              AIRZEP
-            </span>
+          <Link href="/" className="relative z-20 flex items-center space-x-2 px-2 py-1">
+            <span className="text-xl font-bold text-white tracking-[0.15em] uppercase">AIRZEP</span>
           </Link>
-          <MobileNavToggle
-            isOpen={isOpen}
-            onClick={() => setIsOpen(!isOpen)}
-          />
+          <MobileNavToggle isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </MobileNavHeader>
         <MobileNavMenu isOpen={isOpen} onClose={() => setIsOpen(false)}>
           {navItems.map((item, idx) => (
@@ -76,5 +63,5 @@ export function Nav() {
         </MobileNavMenu>
       </MobileNav>
     </Navbar>
-  );
+  )
 }

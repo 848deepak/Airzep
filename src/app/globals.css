@@ -21,19 +21,27 @@
     font-family: var(--font-geist-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     color: inherit;
   }
 
-  p, span, a, button, div {
+  p,
+  span,
+  a,
+  button,
+  div {
     color: inherit;
   }
 }
 
 @theme inline {
-  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
-  var(--delay, 0ms);
- 
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
+
   @keyframes cell-ripple {
     0% {
       opacity: 0.4;

@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { BackgroundRippleEffect } from "@/components/ui/background-ripple-effect";
+'use client'
+import React from 'react'
+import { BackgroundRippleEffect } from '@/components/ui/background-ripple-effect'
 
 export function BackgroundRippleEffectDemo() {
   return (
@@ -11,11 +11,10 @@ export function BackgroundRippleEffectDemo() {
           Interactive Background Boxes Ripple Effect
         </h2>
         <p className="relative z-10 mx-auto mt-4 max-w-xl text-center text-neutral-800 dark:text-neutral-500">
-          Hover over the boxes above and click.To be used on backgrounds of hero
-          sections OR Call to Action sections. I beg you don&apos;t use it
-          everywhere.
+          Hover over the boxes above and click.To be used on backgrounds of hero sections OR Call to
+          Action sections. I beg you don&apos;t use it everywhere.
         </p>
       </div>
     </div>
-  );
+  )
 }
