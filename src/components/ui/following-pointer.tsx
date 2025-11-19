@@ -131,7 +131,7 @@ export const FollowerPointerCard = ({
       ref={ref}
       className={cn('relative', className)}
     >
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {isInside && (
           <FollowPointer
             x={x}
@@ -359,10 +359,13 @@ export const FollowPointer = ({
       }
     } else if (!isIdle) {
       // When not idle, keep idle position synced with cursor for smooth transition
-      idleX.set(x.get())
-      idleY.set(y.get())
-    } else {
-      // Reset rotation and tilt when not idle
+      // This ensures when drone mode starts, it begins from current cursor position
+      const currentX = x.get()
+      const currentY = y.get()
+      idleX.set(currentX)
+      idleY.set(currentY)
+
+      // Reset transformations for smooth transition to idle mode
       rotation.set(0)
       tilt.set(0)
       perspective.set(0)
@@ -371,7 +374,7 @@ export const FollowPointer = ({
     }
   }, [isIdle, containerRect, idleX, idleY, rotation, tilt, perspective, scale, zIndex, x, y])
 
-  // Show pointer cursor over text
+  // Show pointer cursor over text with smooth transition from drone
   if (isOverText) {
     return (
       <motion.div
@@ -382,16 +385,22 @@ export const FollowPointer = ({
           pointerEvents: 'none',
         }}
         initial={{
-          scale: 1,
-          opacity: 1,
+          scale: 0.8,
+          opacity: 0,
+          rotate: 0,
         }}
         animate={{
           scale: 1,
           opacity: 1,
+          rotate: 0,
         }}
         exit={{
-          scale: 0,
+          scale: 0.8,
           opacity: 0,
+        }}
+        transition={{
+          duration: 0.15,
+          ease: 'easeOut',
         }}
       >
         <svg
@@ -399,7 +408,7 @@ export const FollowPointer = ({
           fill="currentColor"
           strokeWidth="1"
           viewBox="0 0 16 16"
-          className="h-6 w-6 -translate-x-[12px] -translate-y-[10px] -rotate-[70deg] transform transition-colors duration-300"
+          className="h-6 w-6 -translate-x-[3px] -translate-y-[3px] -rotate-[70deg] transform"
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -432,13 +441,16 @@ export const FollowPointer = ({
       }}
       animate={{
         opacity: isIdle ? (scale.get() < 0.8 ? 0.7 : 1) : 1,
+        scale: 1,
       }}
       transition={{
         opacity: { duration: 0.5 },
+        scale: { duration: 0.3, ease: 'easeOut' },
       }}
       exit={{
         scale: 0.8,
         opacity: 0,
+        transition: { duration: 0.2 },
       }}
     >
       <motion.svg
