@@ -4,10 +4,10 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { m } from 'framer-motion'
 import { MagicButton } from './ui/MagicButton'
-import Link from 'next/link'
 import { ArrowRight, Play } from 'lucide-react'
 import { BackgroundRippleEffect } from './ui/background-ripple-effect'
 import { Cover } from './ui/cover'
+import Link from 'next/link'
 
 const HeroScene = dynamic(() => import('./HeroScene').then(mod => mod.HeroScene), {
   ssr: false,

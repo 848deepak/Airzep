@@ -5,6 +5,8 @@ import { Nav } from '@/components/Nav'
 import { Footer } from '@/components/Footer'
 import { StructuredData } from '@/components/StructuredData'
 import { Analytics } from '@/components/Analytics'
+import { FollowerPointerCard } from '@/components/ui/following-pointer'
+import DroneEasterEggs from '@/components/DroneEasterEggs'
 
 const inter = Inter({
   variable: '--font-geist-sans',
@@ -115,11 +117,14 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
-        <StructuredData />
-        <Analytics />
-        <Nav />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <FollowerPointerCard>
+          <StructuredData />
+          <Analytics />
+          <DroneEasterEggs />
+          <Nav />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </FollowerPointerCard>
       </body>
     </html>
   )

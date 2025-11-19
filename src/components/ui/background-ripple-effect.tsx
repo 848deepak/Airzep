@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 
 export const BackgroundRippleEffect = ({
@@ -16,7 +16,23 @@ export const BackgroundRippleEffect = ({
     col: number
   } | null>(null)
   const [rippleKey, setRippleKey] = useState(0)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const ref = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect()
+        setMousePos({
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top,
+        })
+      }
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   return (
     <div
@@ -43,6 +59,8 @@ export const BackgroundRippleEffect = ({
             setRippleKey(k => k + 1)
           }}
           interactive
+          mousePos={mousePos}
+          containerRef={ref}
         />
       </div>
     </div>
@@ -59,6 +77,8 @@ type DivGridProps = {
   clickedCell: { row: number; col: number } | null
   onCellClick?: (row: number, col: number) => void
   interactive?: boolean
+  mousePos?: { x: number; y: number }
+  containerRef?: React.RefObject<HTMLDivElement | null>
 }
 
 type CellStyle = React.CSSProperties & {
@@ -76,9 +96,39 @@ const DivGrid = ({
   clickedCell = null,
   onCellClick = () => {},
   interactive = true,
+  mousePos = { x: 0, y: 0 },
+  containerRef,
 }: DivGridProps) => {
   void _cellSize // Intentionally unused but required by DivGridProps interface
+  const [containerRect, setContainerRect] = React.useState<DOMRect | null>(null)
   const cells = useMemo(() => Array.from({ length: rows * cols }, (_, idx) => idx), [rows, cols])
+
+  // Update container rect when ref is available
+  React.useEffect(() => {
+    if (containerRef?.current) {
+      setContainerRect(containerRef.current.getBoundingClientRect())
+
+      const handleResize = () => {
+        if (containerRef?.current) {
+          setContainerRect(containerRef.current.getBoundingClientRect())
+        }
+      }
+
+      window.addEventListener('resize', handleResize)
+      return () => window.removeEventListener('resize', handleResize)
+    }
+  }, [containerRef])
+
+  // Calculate grid intersections (dots at corners of cells)
+  const dots = useMemo(() => {
+    const dotArray: Array<{ row: number; col: number }> = []
+    for (let r = 0; r <= rows; r++) {
+      for (let c = 0; c <= cols; c++) {
+        dotArray.push({ row: r, col: c })
+      }
+    }
+    return dotArray
+  }, [rows, cols])
 
   const gridStyle: React.CSSProperties = {
     display: 'grid',
@@ -123,6 +173,35 @@ const DivGrid = ({
           />
         )
       })}
+
+      {/* Glowing dots at grid intersections */}
+      {containerRect
+        ? dots.map(({ row, col }, idx) => {
+            const dotX = (col / cols) * containerRect.width
+            const dotY = (row / rows) * containerRect.height
+
+            // Calculate distance from mouse to dot
+            const distance = Math.hypot(mousePos.x - dotX, mousePos.y - dotY)
+            const maxGlowDistance = 150 // pixels
+            const glowIntensity = Math.max(0, 1 - distance / maxGlowDistance)
+
+            const dotStyle: React.CSSProperties = {
+              left: `${(col / cols) * 100}%`,
+              top: `${(row / rows) * 100}%`,
+              opacity: glowIntensity * 0.8,
+              transform: `translate(-50%, -50%) scale(${1 + glowIntensity * 0.5})`,
+              boxShadow: `0 0 ${glowIntensity * 20}px ${glowIntensity * 10}px rgba(99, 102, 241, ${glowIntensity * 0.8})`,
+            }
+
+            return (
+              <div
+                key={`dot-${idx}`}
+                className="absolute w-1.5 h-1.5 rounded-full bg-primary-400 pointer-events-none transition-all duration-100 ease-out"
+                style={dotStyle}
+              />
+            )
+          })
+        : null}
     </div>
   )
 }

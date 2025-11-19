@@ -5,10 +5,12 @@ import { Button } from '@/components/ui/Button'
 import { Boxes } from '@/components/ui/background-boxes'
 import Link from 'next/link'
 import { Home, ArrowLeft } from 'lucide-react'
+import DroneEasterEggs from '@/components/DroneEasterEggs'
 
 export default function NotFound() {
   return (
     <div className="min-h-screen pt-20 bg-black flex items-center justify-center">
+      <DroneEasterEggs />
       <section className="relative w-full py-20 sm:py-32 overflow-hidden bg-black">
         <div className="absolute inset-0 w-full h-full bg-black z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
         <Boxes />
@@ -56,17 +58,20 @@ export default function NotFound() {
               transition={{ delay: 0.5, duration: 0.5 }}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Button asChild size="xl" variant="default">
-                <Link href="/">
+              <Link href="/">
+                <Button size="xl" variant="default">
                   <Home className="mr-2 h-5 w-5" />
                   Go Home
-                </Link>
-              </Button>
-              <Button asChild size="xl" variant="ghost" className="text-white hover:bg-white/10">
-                <Link href="javascript:history.back()">
-                  <ArrowLeft className="mr-2 h-5 w-5" />
-                  Go Back
-                </Link>
+                </Button>
+              </Link>
+              <Button
+                size="xl"
+                variant="ghost"
+                className="text-white hover:bg-white/10"
+                onClick={() => window.history.back()}
+              >
+                <ArrowLeft className="mr-2 h-5 w-5" />
+                Go Back
               </Button>
             </m.div>
 
